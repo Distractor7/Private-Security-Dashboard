@@ -1,78 +1,68 @@
+// app/home.tsx
 import React from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
-import { Text, Card, Layout, useTheme } from "@ui-kitten/components";
+import {
+  Box,
+  Heading,
+  Text,
+  VStack,
+  HStack,
+  IconButton,
+  Icon,
+  Center,
+  NativeBaseProvider,
+  extendTheme,
+} from "native-base";
+import { Ionicons } from "@expo/vector-icons";
 
-const DashboardCard = ({
-  title,
-  value,
-}: {
-  title: string;
-  value: string | number;
-}) => (
-  <Card style={styles.card}>
-    <Text category="h6">{title}</Text>
-    <Text category="s1" appearance="hint">
-      {value}
-    </Text>
-  </Card>
-);
+const theme = extendTheme({}); // You can customize the theme here later
 
-export default function HomeScreen() {
-  const theme = useTheme();
-
+const Home = () => {
   return (
-    <Layout style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scroll}>
-        {/* Header */}
-        <Text category="h4" style={styles.header}>
-          Welcome, Jordan 👋
-        </Text>
-        <Text category="s1" appearance="hint" style={styles.subheader}>
-          Here’s what’s happening today:
-        </Text>
+    <NativeBaseProvider theme={theme}>
+      <Box safeArea flex={1} p={4} bg="white">
+        <HStack justifyContent="space-between" alignItems="center" mb={4}>
+          <Heading size="lg">Dashboard</Heading>
+          <HStack space={2}>
+            <IconButton
+              icon={<Icon as={Ionicons} name="notifications-outline" />}
+              borderRadius="full"
+              _icon={{ color: "gray.600", size: "md" }}
+            />
+            <IconButton
+              icon={<Icon as={Ionicons} name="settings-outline" />}
+              borderRadius="full"
+              _icon={{ color: "gray.600", size: "md" }}
+            />
+          </HStack>
+        </HStack>
 
-        {/* Stats Cards */}
-        <View style={styles.grid}>
-          <DashboardCard title="On Duty" value="8 Guards" />
-          <DashboardCard title="Check-ins Today" value="24" />
-          <DashboardCard title="Incidents" value="3" />
-          <DashboardCard title="Zones Covered" value="12" />
-        </View>
+        <VStack space={4}>
+          <Box p={4} bg="green.100" borderRadius="md">
+            <Text bold fontSize="md">
+              Guards Checked In
+            </Text>
+            <Heading size="2xl" color="green.800">
+              12
+            </Heading>
+          </Box>
 
-        {/* Placeholder for more */}
-        <Text category="label" style={{ marginTop: 32 }}>
-          📍 More coming soon: map view, incident feed, guard timeline...
-        </Text>
-      </ScrollView>
-    </Layout>
+          <Box p={4} bg="blue.100" borderRadius="md">
+            <Text bold fontSize="md">
+              Last Report
+            </Text>
+            <Text color="blue.800">2 mins ago at Site A</Text>
+          </Box>
+
+          <Box p={4} bg="purple.100" borderRadius="md">
+            <Text bold fontSize="md">
+              Upcoming Shift
+            </Text>
+            <Text color="purple.800">13:00 - 21:00 | Guard: M. Dlamini</Text>
+          </Box>
+        </VStack>
+      </Box>
+    </NativeBaseProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-    backgroundColor: "#fff",
-  },
-  scroll: {
-    paddingVertical: 32,
-  },
-  header: {
-    marginBottom: 4,
-    fontWeight: "bold",
-  },
-  subheader: {
-    marginBottom: 24,
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: 12,
-  },
-  card: {
-    width: "47%",
-    marginBottom: 12,
-    borderRadius: 12,
-  },
-});
+export default Home;
