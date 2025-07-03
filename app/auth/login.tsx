@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     color: "#000",
     marginBottom: 12,
-    fontFamily: "Inter_400Regular",
+    fontFamily: "Arial",
     backgroundColor: "#f7f7f7",
   },
   inputError: {
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontFamily: "Inter_500Medium",
+    fontFamily: "Arial",
     fontSize: 16,
   },
   errorText: {
