@@ -1,9 +1,9 @@
 // app/_layout.tsx
-import { Slot } from "expo-router";
+import { Drawer } from "expo-router/drawer";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 
 import * as eva from "@eva-design/eva";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
@@ -24,7 +24,9 @@ export default function Layout() {
       <ApplicationProvider {...eva} theme={eva.light}>
         <SafeAreaProvider>
           <StatusBar style="auto" />
-          <Slot />
+          <Drawer>
+            {/* This automatically includes pages like /home, /reports, /properties */}
+          </Drawer>
         </SafeAreaProvider>
       </ApplicationProvider>
     </>
